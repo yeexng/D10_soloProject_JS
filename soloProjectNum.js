@@ -54,7 +54,7 @@ function deleteOne(str, boolean) {
         let deleteFirstLetter = str.slice(1);
         return deleteFirstLetter
     } else{
-        let deleteLastLetter = str.slice(0,str.length - 1);
+        let deleteLastLetter = str.slice(0,- 1);
         return deleteLastLetter
     }
 }
@@ -68,10 +68,10 @@ Ex.: onlyLetters("I have 4 dogs") => returns "I have dogs"
 
 */
 function onlyLetters(str) {
-    let noNumber = str.replace(/[0-9]/g,"");
+    let noNumber = str.replace(/[0-9]/gi,"");
     return noNumber
 }
-console.log(onlyLetters("I have 8 dogs"));
+console.log(onlyLetters("I have 8 dogs 30."));
 
 /* EXERCISE 6
 
