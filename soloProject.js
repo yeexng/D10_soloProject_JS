@@ -19,8 +19,8 @@ Create a variable called random and assign to it a random number between 0 and 2
 
 */
 
-let random = Math.random()*20
-let random2 = Math.floor((Math.random() * 20) + 1);
+let random = Math.random()*21
+let random2 = Math.floor((Math.random() * 21));
 console.log(random);
 console.log(random2);
 
