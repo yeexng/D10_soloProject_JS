@@ -138,16 +138,17 @@ console.log(rollTheDices(10));
 Write a function called howManyDays which receives a date as a parameter and returns the number of days passed since that date.
 
 */
-// function howManyDays(date) {
-//     let date = moment()
-//     let currentDate = date.format('D/MM/YYYY');
-//     let differenceInTime = newDate.getTime() - date.getTime();
-//     let differenceInDays = differenceInTime / (1000 * 3600 * 24);
 
-//     return differenceInDays
-// }
+function howManyDays(date) {
 
-// console.log(howManyDays(11-11-2022))
+    let current = new Date(date.getTime());
+    let previous = new Date(date.getFullYear(), 0, 1); 
+    
+    return Math.ceil((current - previous + 1) / 86400000);
+  }
+  
+  console.log("Days Differences:" +
+  howManyDays(new Date(2022, 12, 12)));
 
 /* EXERCISE 10
 
@@ -312,11 +313,23 @@ function sumAllTheYears() {
 }
 
 console.log(sumAllTheYears());
+
 /* EXERCISE 18
 
 Write a function called searchByTitle which receives a string as a parameter and returns all the movies in the provided movies array which contain that string in the title.
 
 */
+function searchByTitle(string) {
+    
+    for (let i = 0; i < movies.length; i++) {
+        if (string === movies[i].Title)
+
+        return movies[i]
+        
+    }
+}
+
+console.log(searchByTitle("Avengers: Endgame"));
 
 /* EXERCISE 19
 
@@ -327,12 +340,39 @@ this object should contain an array called match, made by all the movies from th
 and another array unmatch with all the remaining ones.
 
 */
+function searchAndDivide(string) {
+    let match = [];
+    let unmatch = [];
+ 
+
+    for (let i = 0; i < movies.length; i++) {
+        if (movies[i].Title.includes(string))
+        {
+           match.push(movies[i]);
+            }
+            
+       else {
+                unmatch.push (movies[i])
+            }
+        }
+       
+   console.log("Matched Results: ", match)
+   console.log("Unmatched Results: ", unmatch)
+}
+   
+searchAndDivide("Avengers")
 
 /* EXERCISE 20
 
 Write a function called "removeIndex" which receives a number as a parameter and returns the provided movies array without the element in the given position.
 
 */
+
+function removeIndex(number) {
+    return movies[number]
+}
+
+console.log(removeIndex(13));
 
 // [EXTRAS] JS Advanced
 
@@ -351,6 +391,21 @@ halfTree(3)
 ***
 
 */
+function halfTree(num) {
+
+    let heightOfTree = "";
+    for (i = 0; i <= num; i++) {
+
+      for (j = 0; j <= i; j++) {
+        heightOfTree = heightOfTree + "*";
+      }
+      heightOfTree = heightOfTree + "\n";
+    }
+    return heightOfTree;
+  }
+
+console.log(halfTree(8), "\n");
+
 
 /* EXERCISE 22
 
@@ -368,11 +423,56 @@ tree(3)
 
 */
 
+function tree (number)
+{
+    let heightOfTree = "";
+    for (i = 0; i< number; i++)
+    {
+        for(j=0; j<number - i - 1; j++)
+        {
+            heightOfTree += " ";
+        }
+        for (let k=0; k<2*i-1;k++)
+        {
+            heightOfTree += "*";
+        }
+        heightOfTree += "\n";
+    }
+    console.log(heightOfTree);
+}
+
+tree(10)
+
 /* EXERCISE 23
 
 Create a function called "isItPrime" that receives a number as a parameter and returns true if the given number is a prime number.
 
 */
+function test_prime(num)
+{
+
+  if (num === 1)
+  {
+    return false;
+  }
+  else if(num === 2)
+  {
+    return true;
+  }else
+  {
+    for(let i = 2; i < num ; i++)
+    {
+      if(num % i === 0)
+      {
+        return false;
+      }
+    }
+    return true;  
+  }
+}
+
+console.log(test_prime(100));
+console.log(test_prime(41));
 
 /* WHEN YOU ARE FINISHED
 
@@ -608,4 +708,4 @@ const movies= [
 
     },
 
-    ];
+    ]
