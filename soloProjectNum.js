@@ -50,7 +50,7 @@ If the boolean value is true it should return the string without the first lette
 
 */
 function deleteOne(str, boolean) {
-    if (boolean === true) {
+    if (boolean) {
         let deleteFirstLetter = str.slice(1);
         return deleteFirstLetter
     } else{
@@ -59,6 +59,7 @@ function deleteOne(str, boolean) {
     }
 }
 console.log(deleteOne("Hahaha", false));
+console.log(deleteOne("Hahaha", true));
 
 /* EXERCISE 5
 
@@ -95,13 +96,10 @@ Write a function called whatDayIsIt that should return the current day of the we
 
 */
 function whatDayIsIt() {
-    let d = new Date("December 02, 2022 10:10:00")
-    let day = d.getDay();
-
-    return day
+    let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+    return days [new Date().getDay()]
 }
-
-console.log(whatDayIsIt());
+console.log("Today is:" + whatDayIsIt());
 
 /* EXERCISE 8
 
@@ -122,6 +120,18 @@ values: [3, 3, 4]
 }
 
 */
+function rollTheDices(num) {
+    let arr = [];
+    let obj = { sum: 0,};
+
+    for (let i = 0; i < num; i++) {
+        arr[i] = dice();
+        obj.sum += arr[i];
+    }
+    console.log(`The Random numbers are: ${arr}`);
+    console.log(`And the sum of them is: ${obj.sum}`);
+}
+console.log(rollTheDices(10));
 
 /* EXERCISE 9
 
@@ -144,15 +154,21 @@ Write a function called howManyDays which receives a date as a parameter and ret
 Write a function called isTodayMyBirthday which should return true if today’s your birthday, false otherwise.
 
 */
-function isTodayMyBirthday(str) {
-    if (str === "true") {
-        return "Happy Birthday!🎂"
-    } else {
-        return "Counting down"
+function isTodayMyBirthdy() {
+    let today = new Date();
+    let month = today.getMonth() + 1;
+    let day = today.getDate();
+
+    let birthdayCheck = month === 12 && day === 4 ? true : false;
+
+    if (birthdayCheck) {
+        console.log("Happy Birthday!🎂")
+    } else{
+        console.log("Counting down");
     }
 }
 
-console.log(isTodayMyBirthday("false"));
+isTodayMyBirthdy()
 
 // JS Arrays & Objects
 
@@ -185,7 +201,21 @@ console.log(deleteProp(me,"age"));
 Write a function called oldestMovie which finds the oldest movie in the provided movies array.
 
 */
+function oldestMovie() {
+    let oldest = movies[0];
+    let releaseDate = parseInt(oldest.Year);
 
+    for (let i = 1; i < movies.length; i++) {
+        if( parseInt(movies[i].Year)< releaseDate){
+            oldest = movies[i];
+            releaseDate = parseInt(movies[i].Year);
+        }
+        
+    }
+    return oldest;
+}
+
+console.log(oldestMovie());
 /* EXERCISE 13
 
 Write a function called countMovies which returns the number of movies contained in the provided movies array.
@@ -195,31 +225,93 @@ function countMovie() {
     let length = movies.length;
     return length
 }
-console.log(countMovie);
+console.log(countMovie());
+
+//or
+
+function countMovie() {
+    let count=0 ;
+    for (i = 0; i < movies.length; i++) {
+        count ++ ;
+    }
+    return count;
+}
+console.log(countMovie());
+
 /* EXERCISE 14
 
 Write a function called onlyTheTitles which creates an array with just the titles of the movies contained in the provided movies array.
 
 */
+function onlyTitles() {
+    let titles = []
+    for (let i = 0; i < movies.length; i++) {
+        titles.push(movies[i].Title)
+        
+    }
+    return titles;
+}
 
+console.log(onlyTitles());
 /* EXERCISE 15
 
 Write a function called onlyInThisMillennium which returns only the movies produced in this millennium from the provided movies array.
 
 */
 
+function onlyInThisMillennium() {
+    let only2000 = [];
+
+    for (let i = 0; i < movies.length; i++) {
+        
+        if (2000 <= movies[i].Year) {
+            only2000.push(movies[i])
+        }
+        
+    }
+    return only2000;
+}
+
+console.log(onlyInThisMillennium());
+
 /* EXERCISE 16
 
 Write a function called getMovieById which receives an id as a parameter and returns the movie with the given id from the provided movies array.
 
 */
+function getMovieById(id) {
+
+    for (let i = 0; i < movies.length; i++) {
+        if (id === movies[i].imdbID);
+        
+        return movies[i]
+    }
+}
+
+console.log(getMovieById("tt0120737"))
 
 /* EXERCISE 17
 
 Write a function called sumAllTheYears which returns the sum of all the years in which the movies in the provided movies array have been produced.
 
 */
+function sumAllTheYears() {
+    let years = []
+    let sum = 0;
+    for (i = 0; i < movies.length; i++) {
+        years.push(movies[i].Year);
+        
+    }
+    for (j = 0; j < years.length; j++) {
+        parsed = parseInt(years[j])
+        
+        sum += parsed
+    }
 
+    return sum
+}
+
+console.log(sumAllTheYears());
 /* EXERCISE 18
 
 Write a function called searchByTitle which receives a string as a parameter and returns all the movies in the provided movies array which contain that string in the title.
@@ -290,7 +382,7 @@ Commit and push the code to your personal GitHub repository; then post the link 
 
 /* This movies array is used throughout the exercises. You’re not supposed to alter it. */
 
-const movies = [
+const movies= [
 
     {
 
